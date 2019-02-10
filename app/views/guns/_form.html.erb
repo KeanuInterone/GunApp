@@ -1,3 +1,7 @@
+
+<style>
+  .field {border:1px solid red;}
+</style>
 <%= form_with(model: gun, local: true) do |form| %>
   <% if gun.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +17,7 @@
 
   <div class="field">
     <%= form.label :brand %>
-    <%= form.text_field :brand %>
+    <%= form.select(:brand_id, Brand.all.collect{|b| [b.name, b.id]}, {include_blank: 'None'}) %>
   </div>
 
   <div class="field">

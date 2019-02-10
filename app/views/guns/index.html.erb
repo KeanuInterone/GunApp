@@ -15,7 +15,7 @@
   <tbody>
     <% @guns.each do |gun| %>
       <tr>
-        <td><%= gun.brand %></td>
+        <td><%= gun.brand.name unless gun.brand.nil? %></td>
         <td><%= gun.name %></td>
         <td><%= gun.caliber %></td>
         <td><%= link_to 'Show', gun %></td>

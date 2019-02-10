@@ -2,7 +2,7 @@
 
 <p>
   <strong>Brand:</strong>
-  <%= @gun.brand %>
+  <%= @gun.brand.name unless @gun.brand.nil? %>
 </p>
 
 <p>
