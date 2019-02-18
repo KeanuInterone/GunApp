@@ -17,9 +17,7 @@
 
 <p>
   <strong>Image:</strong>
-  <% if @gun.image.attached? %>
-  	<%= image_tag @gun.image, width: '200px' %>
-  <% end %>
+  <%= gun_image(@gun) %>
 </p>
 
 <%= link_to 'Edit', edit_gun_path(@gun) %> |

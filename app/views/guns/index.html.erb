@@ -5,9 +5,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Brand</th>
       <th>Name</th>
+      <th>Image</th>
       <th>Caliber</th>
+      <th>Brand</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +17,10 @@
     <% @guns.each do |gun| %>
 
       <tr>
-        <td><%= gun_brand_link(gun) %></td>
         <td><%= gun.name %></td>
+        <td><%= gun_image(gun) %></td>
         <td><%= gun.caliber %></td>
+        <td><%= gun_brand_link(gun) %></td>
         <td><%= link_to 'Show', gun %></td>
         <td><%= link_to 'Edit', edit_gun_path(gun) %></td>
         <td><%= link_to 'Destroy', gun, method: :delete, data: { confirm: 'Are you sure?' } %></td>
