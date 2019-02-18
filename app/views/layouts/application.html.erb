@@ -12,54 +12,40 @@
 
   <body>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12 red-border res-indicator">
-          <H1>Welcome to Guns</H1>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/guns">Guns</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/guns">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/brands">Brands</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/guns/new">Create Gun</a>
+              <a class="dropdown-item" href="/brands/new">Create Brand</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container nav-padding" role="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <%= yield %>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6 red-border">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="col-sm-6 red-border">
-          <ul>
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-            <li>item 4</li>
-            <li>item 5</li>
-          </ul>
-        </div>      
-      </div>
-      <div class="row">
-        <div class="col-12 red-border">
-          <%= yield %>
-        </div>
-        
-      </div>
-    </div>
-
-
-    
-    
-    
-
-    
-
-    <!-- <button>Button</button>
-    
-
-    <%#= image_tag "http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3c2645e1d587ee22980cca124076fa8a3ed3b5bc/G19_Gen4-107.png", class: "float-lefts"%>
-
-    <p>this is a <%#= link_to "Brands", :brands %></p> -->
-
-    
+    </main>
 
   </body>
 </html>
