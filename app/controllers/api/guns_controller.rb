@@ -4,8 +4,12 @@ class Api::GunsController < ApplicationController
 
   # GET /api/guns
   def index
-    @guns = Gun.all
-
+  	if(params.has_key?(:brand_id))
+      @guns = Gun.where(brand_id: params[:brand_id])
+    else
+      @guns = Gun.all
+    end
+    
     render json: @guns
   end
 
@@ -17,6 +21,9 @@ class Api::GunsController < ApplicationController
   # POST /api/guns
   def create
     @gun = Gun.new(gun_params)
+    if(params.has_key?(:brand_id))
+    	@gun.brand_id = params[:brand_id];
+    end
 
     if @gun.save
       render json: @gun, status: :created, location: @gun

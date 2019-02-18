@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => {:format => :json} do
   	resources :guns
-  	resources :brands
+  	resources :brands do 
+  		resources :guns
+  	end
   end
 end
