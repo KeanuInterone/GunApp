@@ -20,5 +20,13 @@
   <%= gun_image(@gun) %>
 </p>
 
+<% if (current_user) %>
+  <% if (current_user.favorite_guns.include?(@gun)) %>
+    <p>Gun in favorites</p>
+  <% else %>
+    <%= link_to 'Add to favorites', "/users/#{current_user.id}/add_gun_to_favorites/#{@gun.id}", method: :put %> |
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_gun_path(@gun) %> |
 <%= link_to 'Back', guns_path %>
