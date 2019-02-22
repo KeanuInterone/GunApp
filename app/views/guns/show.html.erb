@@ -24,9 +24,28 @@
   <% if (current_user.favorite_guns.include?(@gun)) %>
     <p>Gun in favorites</p>
   <% else %>
-    <%= link_to 'Add to favorites', "/users/#{current_user.id}/add_gun_to_favorites/#{@gun.id}", method: :put %> |
+    <!-- <button class="button" href="/users/#{current_user.id}/add_gun_to_favorites/#{@gun.id}" formmethod="put">Add to favorites</button> -->
+    <p>
+      <button class="button"><%= link_to 'Add to favorites', "/users/#{current_user.id}/add_gun_to_favorites/#{@gun.id}", method: :put %></button>
+    </p>
   <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_gun_path(@gun) %> |
 <%= link_to 'Back', guns_path %>
+
+
+<h2>Favorited by</h2>
+<table class="table table-striped">
+  <tbody>
+    <% @gun.favored_by.each do |user| %>
+      <tr>
+        <td><%= "#{user.first_name} #{user.last_name}" %></td>
+        <td><%= link_to 'view', user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
