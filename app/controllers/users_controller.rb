@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :add_gun_to_favorites]
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :add_gun_to_favorites, :remove_gun_from_favorites]
+  before_action :validate_user, only: [:edit, :update, :destroy, :add_gun_to_favorites, :remove_gun_from_favorites]
   # GET /users
   # GET /users.json
   def index
@@ -73,6 +73,17 @@ class UsersController < ApplicationController
     end 
   end
 
+  #PUT users/1/remove_gun_from_favorites/:gun_id
+  def remove_gun_from_favorites
+    gun = Gun.find(params[:gun_id])
+    if (gun && @user.favorite_guns.include?(gun))
+      @user.favorite_guns.delete(gun)
+      redirect_to @user, notice: 'Gun removed from favorites.'
+    else
+      redirect_to @user, notice: 'Error.'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -82,5 +93,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    # See if user the acting user is acting on themselves
+    def validate_user
+      if (!current_user || current_user.id.to_s != params[:id])
+        redirect_to root_url
+      end
     end
 end

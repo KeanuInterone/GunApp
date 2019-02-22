@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Users
   resources :users
   put 'users/:id/add_gun_to_favorites/:gun_id' => 'users#add_gun_to_favorites'
+  put 'users/:id/remove_gun_from_favorites/:gun_id' => 'users#remove_gun_from_favorites'
   resources :sessions, only: [:new, :create, :destroy] 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'

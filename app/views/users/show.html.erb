@@ -5,7 +5,7 @@
 <p>
   <%= @user.email %>
 </p>
-<% if (current_user.id == @user.id) %>
+<% if (current_user && current_user.id == @user.id) %>
 <p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Logout', logout_path %>
@@ -26,12 +26,13 @@
 
   <tbody>
     <% @user.favorite_guns.each do |gun| %>
-
       <tr>
-        <td><%= gun.name %></td>
-        <td><%= gun_image(gun)%></td>
+        <td><%= link_to gun.name, gun %></td>
+        <td><%= gun_image(gun) %></td>
         <td><%= gun.caliber %></td>
-        <td><%= link_to 'Show', gun %></td>
+        <% if (current_user && current_user.id == @user.id) %>
+        <td><%= link_to 'Remove', "/users/#{@user.id}/remove_gun_from_favorites/#{gun.id}", method: :put %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
