@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'guns#index'
   resources :brands
   resources :guns
+  post 'guns/:id/comments' => 'guns#add_comment'
 
   # Users
   resources :users

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_21_031108) do
+ActiveRecord::Schema.define(version: 2019_02_23_151310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,22 @@ ActiveRecord::Schema.define(version: 2019_02_21_031108) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "gun_comments", id: false, force: :cascade do |t|
+    t.bigint "comment_id", null: false
+    t.bigint "gun_id", null: false
+    t.index ["comment_id", "gun_id"], name: "index_gun_comments_on_comment_id_and_gun_id", unique: true
+    t.index ["comment_id"], name: "index_gun_comments_on_comment_id"
+    t.index ["gun_id"], name: "index_gun_comments_on_gun_id"
+  end
+
   create_table "guns", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -69,4 +85,5 @@ ActiveRecord::Schema.define(version: 2019_02_21_031108) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
 end

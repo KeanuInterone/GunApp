@@ -46,5 +46,28 @@
   </tbody>
 </table>
 
+<h2>Comments</h2>
+<% if (current_user) %>
+  <%= form_for :comment, url: "/guns/#{@gun.id}/comments" do |form| %>
+    <div class="field">
+      <%= form.text_area :comment %>
+    </div>
+    <div class="actions">
+        <%= form.submit "Comment "%>
+    </div>
+  <% end %>
+<% else %>
+  <p>Must be logged in to comment</p>
+<% end %>
+<p></p>
+<% @gun.comments.order(created_at: :desc).each do |comment| %>
+  <p>
+    <%= link_to comment.user.email, comment.user %> commented:<br>
+    <small><%= "#{time_ago_in_words(comment.created_at)} ago" %></small><br>
+    <%= comment.comment %>
+  </p>
+<% end %>
+
+
 
 
