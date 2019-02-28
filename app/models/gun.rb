@@ -7,4 +7,13 @@ class Gun < ApplicationRecord
 	def thumbnail
 		return self.image.variant(resize: "100x100").processed
 	end
+
+
+	def filter
+		return {id: self.id,
+				name: self.name,
+				brand: self.brand,
+				favorite_count: self.favored_by.count}
+	end
+
 end

@@ -12,6 +12,11 @@
 </p>
 <% end %>
 
+<h3>Favorites  <%= @user.favorite_brands.count unless @user.favorite_brands.nil? %></h3>
+<% @user.favorite_brands.each do |b| %>
+	<%= link_to b.name, b %> 
+<% end %>
+
 
 <h3>Favorite Guns</h3>
 <table class="table table-striped">

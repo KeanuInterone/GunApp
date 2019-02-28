@@ -9,6 +9,11 @@
 	</div>
 </div>
 
+Liked by:
+<% @brand.favored_by.each do |u| %>
+	<%= link_to u.email, u %>
+<% end %>
+
 
 <table class="table table-striped">
   <thead>

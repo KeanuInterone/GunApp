@@ -15,7 +15,7 @@ class Api::GunsController < ApplicationController
 
   # GET /api/guns/1
   def show
-    render json: @gun
+    render json: @gun.filter
   end
 
   # POST /api/guns
